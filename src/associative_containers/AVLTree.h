@@ -18,21 +18,15 @@ struct AVLTreeNode {
   AVLTreeNode<T>* left_;
   AVLTreeNode();
   explicit AVLTreeNode(const T& x);
-  ~AVLTreeNode();
+  virtual ~AVLTreeNode();
 };
 
 template <class T>
 class AVLTree {
-  // using key_type = Key;
-  // using value_type = Value;
-  // using reference = value_type&;
-  // using const_reference = const value_type&;
  public:
   class Iterator;
   class ConstIterator;
-  using iterator = Iterator;
   using size_type = size_t;
-  using const_iterator = const Iterator;
 
  private:
   AVLTreeNode<T>* root_;
@@ -44,29 +38,31 @@ class AVLTree {
   AVLTreeNode<T>* SingleRotateRight(AVLTreeNode<T>* node);
   AVLTreeNode<T>* SingleRotateLeft(AVLTreeNode<T>* node);
   AVLTreeNode<T>* Balance(AVLTreeNode<T>* node);
-  virtual AVLTreeNode<T>* AVLInsert(AVLTreeNode<T>* node, T data);
-  virtual AVLTreeNode<T>* FindMin(AVLTreeNode<T>* node);
-  virtual AVLTreeNode<T>* RemoveMin(AVLTreeNode<T>* node);
-  virtual AVLTreeNode<T>* AVLRemove(AVLTreeNode<T>* node, T data);
+  virtual AVLTreeNode<T>* AVLInsert(AVLTreeNode<T>* node, const T& data);
+  AVLTreeNode<T>* FindMin(AVLTreeNode<T>* node);
+  AVLTreeNode<T>* RemoveMin(AVLTreeNode<T>* node);
+  AVLTreeNode<T>* AVLRemove(AVLTreeNode<T>* node, const T& data);
 
  public:
-  ~AVLTree();
+  virtual ~AVLTree();
   AVLTree();
   AVLTree(const AVLTree<T>& other);
   AVLTree(AVLTree<T>&& other) noexcept;
   AVLTree(std::initializer_list<T> const& items);
   AVLTree<T>& operator=(const AVLTree<T>& tree);
   AVLTree<T>& operator=(AVLTree<T>&& m) noexcept;
+  void clear();
+  void swap(AVLTree<T>& other);
 
   bool empty() const;
   size_type size() const;
   size_type max_size() const;
-  virtual void insert(const T data);
-  void Remove(const T data);
-  iterator begin();
-  iterator end();
-  const_iterator begin() const;
-  const_iterator end() const;
+  void insert(const T& data);
+  void Remove(const T& data);
+  Iterator begin();
+  Iterator end();
+  const Iterator begin() const;
+  const Iterator end() const;
 
   std::vector<std::vector<T>> LevelOrder();  // TODO временно для тестов
 
@@ -76,7 +72,8 @@ class AVLTree {
 
    private:
     mutable std::stack<AVLTreeNode<T>*> stackNode;  // TODO заменить на свой
-    mutable std::stack<AVLTreeNode<T>*> stackNodeRevers;
+    mutable std::stack<AVLTreeNode<T>*>
+        stackNodeRevers;  // TODO заменить на свой
     AVLTreeNode<T>* root_;
     mutable AVLTreeNode<T>* current_;
     AVLTreeNode<T>* GoFarLeft(AVLTreeNode<T>* node) const;

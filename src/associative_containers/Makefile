@@ -21,7 +21,7 @@ clean:
 check: test
 	clang-format -style="{BasedOnStyle: Google}" -n tests_for_tree/*.* AVLTree.cc AVLTree.h
 	clang-format -style="{BasedOnStyle: Google}" -i tests_for_tree/*.* AVLTree.cc AVLTree.h
-#cppcheck --enable=all --suppress=missingIncludeSystem --inconclusive --check-config AVLTree.cc AVLTree.h
+	cppcheck --enable=all --suppress=missingIncludeSystem --inconclusive --check-config AVLTree.cc AVLTree.h
 ifeq ($(OS), Darwin)
 	leaks --atExit -- ./s21_test
 else

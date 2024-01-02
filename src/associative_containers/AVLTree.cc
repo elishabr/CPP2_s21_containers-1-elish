@@ -73,13 +73,14 @@ AVLTreeNode<T>* AVLTree<T>::Balance(AVLTreeNode<T>* node) {
 }
 
 template <class T>
-AVLTreeNode<T>* AVLTree<T>::AVLInsert(AVLTreeNode<T>* node, T data) {
+AVLTreeNode<T>* AVLTree<T>::AVLInsert(AVLTreeNode<T>* node, const T& data) {
   if (node == nullptr) return new AVLTreeNode<T>(data);
   if (data < node->val_) {
     node->left_ = AVLInsert(node->left_, data);
-  } else {
+  } else if (node->val_ < data) {
     node->right_ = AVLInsert(node->right_, data);
-  }
+  } else
+    node->val_ = data;
   return Balance(node);
 }
 
@@ -96,15 +97,17 @@ AVLTreeNode<T>* AVLTree<T>::RemoveMin(AVLTreeNode<T>* node) {
 }
 
 template <class T>
-AVLTreeNode<T>* AVLTree<T>::AVLRemove(AVLTreeNode<T>* node, T data) {
+AVLTreeNode<T>* AVLTree<T>::AVLRemove(AVLTreeNode<T>* node, const T& data) {
   if (node == nullptr) return 0;
   if (data < node->val_) {
     node->left_ = AVLRemove(node->left_, data);
-  } else if (data > node->val_) {
+  } else if (node->val_ < data) {
     node->right_ = AVLRemove(node->right_, data);
   } else {  // k == node->val_
     AVLTreeNode<T>* left = node->left_;
     AVLTreeNode<T>* rigth = node->right_;
+    node->left_ = nullptr;
+    node->right_ = nullptr;
     delete node;
     if (rigth == nullptr) return left;
     AVLTreeNode<T>* min = FindMin(rigth);
@@ -118,18 +121,19 @@ AVLTreeNode<T>* AVLTree<T>::AVLRemove(AVLTreeNode<T>* node, T data) {
 template <class T>
 AVLTree<T>::~AVLTree() {
   delete root_;
+  root_ = nullptr;
 }
 
 template <class T>
 AVLTree<T>::AVLTree() : root_(nullptr) {}
 
 template <class T>
-void AVLTree<T>::insert(const T data) {
+void AVLTree<T>::insert(const T& data) {
   root_ = AVLInsert(root_, data);
 }
 
 template <class T>
-void AVLTree<T>::Remove(const T data) {
+void AVLTree<T>::Remove(const T& data) {
   root_ = AVLRemove(root_, data);
 }
 
@@ -147,9 +151,9 @@ AVLTree<T>::AVLTree(AVLTree<T>&& other) noexcept {
 }
 
 template <class T>
-AVLTree<T>::AVLTree(const AVLTree<T>& other) {
-  AVLTree<T>::Iterator it = other.begin();
-  for (; it.EndOfList(); ++it) {
+AVLTree<T>::AVLTree(const AVLTree<T>& other) : AVLTree<T>() {
+  const AVLTree<T>::Iterator it = other.begin();
+  for (; it != other.end(); it++) {
     root_ = AVLInsert(root_, *it);
   }
 }
@@ -175,6 +179,7 @@ AVLTree<T>& AVLTree<T>::operator=(AVLTree<T>&& other) noexcept {
 
 template <class T>
 size_t AVLTree<T>::size() const {
+  if (root_ == nullptr) return 0;
   return NodeCount(root_);
 }
 
@@ -249,4 +254,15 @@ const typename AVLTree<T>::Iterator AVLTree<T>::end() const {
   for (; !it.EndOfList(); ++it) {
   }
   return it;
+}
+
+template <class T>
+void AVLTree<T>::clear() {
+  delete root_;
+  root_ = nullptr;
+}
+
+template <class T>
+void AVLTree<T>::swap(AVLTree<T>& other) {
+  std::swap(root_, other.root_);
 }

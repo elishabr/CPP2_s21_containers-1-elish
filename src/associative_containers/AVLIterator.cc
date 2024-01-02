@@ -74,7 +74,10 @@ bool AVLTree<T>::Iterator::BeginOfList() const{
 
 template <class T>
 AVLTree<T>::Iterator::Iterator(const AVLTree<T>::Iterator& other ){
-    AVLTree<T>::Iterator(other).swap(*this);
+    current_ = other.current_;
+    root_ = other.root_;
+    stackNode = other.stackNode;
+    stackNodeRevers = other.stackNodeRevers;
 }
 
 template <class T>

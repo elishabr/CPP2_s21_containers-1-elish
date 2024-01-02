@@ -1,5 +1,5 @@
 GCC := gcc -Werror -Wextra -Wall --std=c++17 -lstdc++ -lm
-SANITIZER := -fsanitize=address
+SANITIZER :=  -fsanitize=address
 SOURSE := tests_for_map/*.cc
 FLAGS_LCOV := -g -fprofile-arcs -ftest-coverage
 FLAGS_GTEST := -lgtest -lgcov -pthread
@@ -11,7 +11,7 @@ test: clean
 	$(GCC) $(SANITIZER) $(FLAGS_LCOV) $(SOURSE) $(FLAGS_GTEST) -o s21_test_map
 	./s21_test_map
 gcov_report: test
-	lcov --ignore-errors mismatch -t test -o rep.info -c -d .
+	lcov -t test -o rep.info -c -d .
 	genhtml -o report rep.info
 	rm -rf gcovreport gcovreport.info *.gcda *.gcno math_test.gcda math_test.gcno
 	open ./report/index.html
@@ -25,5 +25,6 @@ check: test
 ifeq ($(OS), Darwin)
 	leaks --atExit -- ./s21_test_map
 else
+#valgrind -s --log-file=mylog.txt --tool=memcheck --leak-check=yes ./s21_test_map
 	CK_FORK=no valgrind --vgdb=no --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --log-file=RESULT_VALGRIND.txt ./s21_test_map
 endif

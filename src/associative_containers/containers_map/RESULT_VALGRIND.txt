@@ -1,0 +1,122 @@
+==117928== Memcheck, a memory error detector
+==117928== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==117928== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
+==117928== Command: ./s21_test_map
+==117928== Parent PID: 117927
+==117928== 
+--117928-- 
+--117928-- Valgrind options:
+--117928--    --vgdb=no
+--117928--    --leak-check=full
+--117928--    --show-leak-kinds=all
+--117928--    --track-origins=yes
+--117928--    --verbose
+--117928--    --log-file=RESULT_VALGRIND.txt
+--117928-- Contents of /proc/version:
+--117928--   Linux version 5.15.133.1-microsoft-standard-WSL2 (root@1c602f52c2e4) (gcc (GCC) 11.2.0, GNU ld (GNU Binutils) 2.37) #1 SMP Thu Oct 5 21:02:42 UTC 2023
+--117928-- 
+--117928-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
+--117928-- Page sizes: currently 4096, max supported 4096
+--117928-- Valgrind library directory: /usr/libexec/valgrind
+--117928-- Reading syms from /home/elishabr/progectCPP/CPP2_s21_containers-1-elishabr/src/associative_containers/containers_map/s21_test_map
+--117928-- Reading syms from /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+--117928--   Considering /usr/lib/debug/.build-id/cc/cdd41e22e25f77a8cda3d045c57ffdb01a9793.debug ..
+--117928--   .. build-id is valid
+--117928-- Reading syms from /usr/libexec/valgrind/memcheck-amd64-linux
+--117928--    object doesn't have a symbol table
+--117928--    object doesn't have a dynamic symbol table
+--117928-- Scheduler: using generic scheduler lock implementation.
+--117928-- Reading suppressions file: /usr/libexec/valgrind/default.supp
+--117928-- REDIR: 0x402aa40 (ld-linux-x86-64.so.2:strlen) redirected to 0x580bcec2 (???)
+--117928-- REDIR: 0x402a810 (ld-linux-x86-64.so.2:index) redirected to 0x580bcedc (???)
+--117928-- Reading syms from /usr/libexec/valgrind/vgpreload_core-amd64-linux.so
+--117928--    object doesn't have a symbol table
+--117928-- Reading syms from /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so
+--117928--    object doesn't have a symbol table
+==117928== WARNING: new redirection conflicts with existing -- ignoring it
+--117928--     old: 0x0402aa40 (strlen              ) R-> (0000.0) 0x580bcec2 ???
+--117928--     new: 0x0402aa40 (strlen              ) R-> (2007.0) 0x0484ee30 strlen
+--117928-- REDIR: 0x4027220 (ld-linux-x86-64.so.2:strcmp) redirected to 0x484fcd0 (strcmp)
+--117928-- REDIR: 0x402afa0 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4853840 (mempcpy)
+--117928-- Reading syms from /usr/lib/x86_64-linux-gnu/libasan.so.6.0.0
+--117928-- Reading syms from /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30
+--117928--    object doesn't have a symbol table
+--117928-- Reading syms from /usr/lib/x86_64-linux-gnu/libm.so.6
+--117928--   Considering /usr/lib/debug/.build-id/9f/3c01b284b7fd2427aa8ae047f2720e12a4d396.debug ..
+--117928--   .. build-id is valid
+--117928-- Reading syms from /usr/lib/x86_64-linux-gnu/libgcc_s.so.1
+--117928--    object doesn't have a symbol table
+--117928-- Reading syms from /usr/lib/x86_64-linux-gnu/libc.so.6
+--117928--   Considering /usr/lib/debug/.build-id/20/3de0ae33b53fee1578b117cb4123e85d0534f0.debug ..
+--117928--   .. build-id is valid
+==117928== WARNING: new redirection conflicts with existing -- ignoring it
+--117928--     old: 0x05624c60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
+--117928--     new: 0x05624c60 (memalign            ) R-> (1017.0) 0x0484e050 aligned_alloc
+==117928== WARNING: new redirection conflicts with existing -- ignoring it
+--117928--     old: 0x05624c60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
+--117928--     new: 0x05624c60 (memalign            ) R-> (1017.0) 0x0484e020 aligned_alloc
+==117928== WARNING: new redirection conflicts with existing -- ignoring it
+--117928--     old: 0x05624c60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
+--117928--     new: 0x05624c60 (memalign            ) R-> (1017.0) 0x0484e050 aligned_alloc
+==117928== WARNING: new redirection conflicts with existing -- ignoring it
+--117928--     old: 0x05624c60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
+--117928--     new: 0x05624c60 (memalign            ) R-> (1017.0) 0x0484e020 aligned_alloc
+--117928-- REDIR: 0x5627720 (libc.so.6:strnlen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--117928-- REDIR: 0x56279e0 (libc.so.6:strpbrk) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--117928-- REDIR: 0x56272e0 (libc.so.6:strcmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--117928-- REDIR: 0x5645cd0 (libc.so.6:wcsnlen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--117928-- REDIR: 0x56286d0 (libc.so.6:memset) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--117928-- REDIR: 0x5644540 (libc.so.6:wcslen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--117928-- REDIR: 0x5628c10 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--117928-- REDIR: 0x5644370 (libc.so.6:wcschr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--117928-- REDIR: 0x5627260 (libc.so.6:index) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--117928-- REDIR: 0x5627960 (libc.so.6:rindex) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--117928-- REDIR: 0x56285a0 (libc.so.6:memmove) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+==117928== Preferring higher priority redirection:
+--117928--     old: 0x0571f5c0 (__memcpy_avx_unalign) R-> (2018.0) 0x04850f90 __memcpy_avx_unaligned_erms
+--117928--     new: 0x0571f5c0 (__memcpy_avx_unalign) R-> (2018.1) 0x04852880 memmove
+--117928-- REDIR: 0x56443f0 (libc.so.6:wcscmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--117928-- REDIR: 0x56289e0 (libc.so.6:stpncpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--117928-- REDIR: 0x56449b0 (libc.so.6:wmemchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--117928-- REDIR: 0x5627830 (libc.so.6:strncmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--117928-- REDIR: 0x5628a70 (libc.so.6:strcasecmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--117928-- REDIR: 0x5627420 (libc.so.6:strcspn) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--117928-- REDIR: 0x5644470 (libc.so.6:wcscpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--117928-- REDIR: 0x56271d0 (libc.so.6:strcat) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--117928-- REDIR: 0x5628b60 (libc.so.6:strncasecmp_l) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--117928-- REDIR: 0x5628480 (libc.so.6:bcmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--117928-- REDIR: 0x5630570 (libc.so.6:memrchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--117928-- REDIR: 0x562a010 (libc.so.6:strchrnul) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--117928-- REDIR: 0x5627390 (libc.so.6:strcpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--117928-- REDIR: 0x5628b10 (libc.so.6:strcasecmp_l) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--117928-- REDIR: 0x56276a0 (libc.so.6:strlen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--117928-- REDIR: 0x56278d0 (libc.so.6:strncpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--117928-- REDIR: 0x5628950 (libc.so.6:stpcpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--117928-- REDIR: 0x56283f0 (libc.so.6:memchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--117928-- REDIR: 0x5627b00 (libc.so.6:strspn) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--117928-- REDIR: 0x56287d0 (libc.so.6:mempcpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--117928-- REDIR: 0x5628ac0 (libc.so.6:strncasecmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--117928-- REDIR: 0x5629f80 (libc.so.6:rawmemchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--117928-- REDIR: 0x4915450 (libasan.so.6:free) redirected to 0x484b210 (free)
+==117928== 
+==117928== Process terminating with default action of signal 11 (SIGSEGV)
+==117928==  General Protection Fault
+==117928==    at 0x5618EC2: __pthread_once_slow (pthread_once.c:114)
+==117928==    by 0x56E76D2: __rpc_thread_variables (rpc_thread.c:59)
+==117928==    by 0x573AA0C: free_mem (in /usr/lib/x86_64-linux-gnu/libc.so.6)
+==117928==    by 0x573A541: __libc_freeres (in /usr/lib/x86_64-linux-gnu/libc.so.6)
+==117928==    by 0x483F1B2: _vgnU_freeres (in /usr/libexec/valgrind/vgpreload_core-amd64-linux.so)
+==117928==    by 0x4A493DF: ???
+==117928==    by 0x493F2D6: __sanitizer::Die() (sanitizer_termination.cpp:59)
+==117928==    by 0x49153B8: __asan::AsanCheckDynamicRTPrereqs() (asan_linux.cpp:181)
+==117928==    by 0x4921564: __asan::AsanInitInternal() [clone .part.0] (asan_rtl.cpp:420)
+==117928==    by 0x40065BD: _dl_init (dl-init.c:102)
+==117928==    by 0x40202C9: ??? (in /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+==117928== 
+==117928== HEAP SUMMARY:
+==117928==     in use at exit: 0 bytes in 0 blocks
+==117928==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
+==117928== 
+==117928== All heap blocks were freed -- no leaks are possible
+==117928== 
+==117928== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

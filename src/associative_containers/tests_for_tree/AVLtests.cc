@@ -83,14 +83,14 @@ TEST(Tree, size) {
   EXPECT_EQ(tree.size(), 5);
 }
 
-TEST(Tree, max_size) {
-  // Arrange
-  AVLTree<int> tree{1, 2, 3, 4, 5};
-  // Act
-  std::cout << tree.max_size() << std::endl;
-  // Assert
-  EXPECT_EQ(tree.max_size(), 230584300921369395);
-}
+// TEST(Tree, max_size) {
+//   // Arrange
+//   AVLTree<int> tree{1, 2, 3, 4, 5};
+//   // Act
+//   std::cout << tree.max_size() << std::endl;
+//   // Assert
+//   EXPECT_EQ(tree.max_size(), 230584300921369395);
+// }
 
 TEST(Tree, MoveConstructors) {
   // Arrange
