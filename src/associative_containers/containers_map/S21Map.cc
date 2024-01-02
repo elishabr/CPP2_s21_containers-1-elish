@@ -35,11 +35,6 @@ s21::map<Key, T>& s21::map<Key, T>::operator=(
   return *this;
 }
 
-template <class Key, class T>
-bool operator<(const s21::pair<const Key, T>& lhs,
-               const s21::pair<const Key, T>& rhs) {
-  return lhs.first < rhs.first;
-}
 
 template <class Key, class T>
 std::pair<typename s21::map<Key, T>::Iterator, bool> s21::map<Key, T>::insert(
