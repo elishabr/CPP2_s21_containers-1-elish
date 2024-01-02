@@ -6,12 +6,6 @@
 namespace s21 {
 
 template <class Key, class T>
-bool operator<(const std::pair<const Key, T>& lhs,
-               const std::pair<const Key, T>& rhs) {
-  return lhs.first < rhs.first;
-}
-
-template <class Key, class T>
 class pair : public std::pair<const Key, T> {
  public:
   pair() : std::pair<const Key, T>() {}
@@ -27,6 +21,12 @@ class pair : public std::pair<const Key, T> {
     return *this;
   }
 };
+
+template <class Key, class T>
+bool operator<(const pair<const Key, T>& lhs,
+               const pair<const Key, T>& rhs) {
+  return lhs.first < rhs.first;
+}
 
 template <class Key, class T>
 class map : public AVLTree<pair<const Key, T>> {
