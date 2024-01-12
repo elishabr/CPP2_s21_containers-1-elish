@@ -1,4 +1,4 @@
-#include "S21Map.h"
+#include "s21_map.h"
 
 template <class Key, class T>
 s21::map<Key, T>::map() : AVLTree<s21::pair<const Key, T>>() {}
@@ -10,10 +10,10 @@ s21::map<Key, T>::map(
 }
 
 template <class Key, class T>
-s21::map<Key, T>::map(const map& m) : AVLTree<s21::pair<const Key, T>>(m) {}
+s21::map<Key, T>::map(const map<Key, T>& other) : AVLTree<s21::pair<const Key, T>>(other) {}
 
 template <class Key, class T>
-s21::map<Key, T>::map(map&& m) noexcept : AVLTree<s21::pair<const Key, T>>(m) {}
+s21::map<Key, T>::map(map<Key, T>&& other) noexcept : AVLTree<s21::pair<const Key, T>>(other) {}
 
 template <class Key, class T>
 s21::map<Key, T>::~map() {}
@@ -28,7 +28,7 @@ s21::map<Key, T>& s21::map<Key, T>::operator=(const map<Key, T>& other) {
 
 template <class Key, class T>
 s21::map<Key, T>& s21::map<Key, T>::operator=(
-    s21::map<Key, T>&& other) noexcept {
+    map<Key, T>&& other) noexcept {
   if (this != &other) {
     AVLTree<s21::pair<const Key, T>>::operator=(other);
   }
@@ -46,8 +46,7 @@ std::pair<typename s21::map<Key, T>::Iterator, bool> s21::map<Key, T>::insert(
   else
     flag = false;
   typename s21::map<Key, T>::Iterator it = this->begin();
-  for (; (*it).first != val.first; ++it) {
-  }
+  for (; (*it).first != val.first; ++it);
   std::pair<decltype(it), bool> res(it, flag);
   return res;
 }
@@ -63,8 +62,7 @@ std::pair<typename s21::map<Key, T>::Iterator, bool>
 s21::map<Key, T>::insert_or_assign(const Key& key, const T& obj) {
   AVLTree<s21::pair<const Key, T>>::insert(s21::pair<const Key, T>(key, obj));
   typename s21::map<Key, T>::Iterator it = this->begin();
-  for (; (*it).first != key; ++it) {
-  }
+  for (; (*it).first != key; ++it);
   bool result = true;
   return std::pair<typename s21::map<Key, T>::Iterator, bool>(it, result);
 }

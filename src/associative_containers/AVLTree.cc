@@ -85,6 +85,17 @@ AVLTreeNode<T>* AVLTree<T>::AVLInsert(AVLTreeNode<T>* node, const T& data) {
 }
 
 template <class T>
+AVLTreeNode<T>* AVLTree<T>::AVLInsertMulti(AVLTreeNode<T>* node, const T& data){
+  if (node == nullptr) return new AVLTreeNode<T>(data);
+  if (data < node->val_) {
+    node->left_ = AVLInsertMulti(node->left_, data);
+  } else{
+    node->right_ = AVLInsertMulti(node->right_, data);
+  } 
+  return Balance(node);
+}
+
+template <class T>
 AVLTreeNode<T>* AVLTree<T>::FindMin(AVLTreeNode<T>* node) {
   return node->left_ ? FindMin(node->left_) : node;
 }
@@ -130,6 +141,11 @@ AVLTree<T>::AVLTree() : root_(nullptr) {}
 template <class T>
 void AVLTree<T>::insert(const T& data) {
   root_ = AVLInsert(root_, data);
+}
+
+template <class T>
+void AVLTree<T>::insert_multi(const T& data) {
+  root_ = AVLInsertMulti(root_, data);
 }
 
 template <class T>

@@ -38,7 +38,8 @@ class AVLTree {
   AVLTreeNode<T>* SingleRotateRight(AVLTreeNode<T>* node);
   AVLTreeNode<T>* SingleRotateLeft(AVLTreeNode<T>* node);
   AVLTreeNode<T>* Balance(AVLTreeNode<T>* node);
-  virtual AVLTreeNode<T>* AVLInsert(AVLTreeNode<T>* node, const T& data);
+  AVLTreeNode<T>* AVLInsert(AVLTreeNode<T>* node, const T& data);
+  AVLTreeNode<T>* AVLInsertMulti(AVLTreeNode<T>* node, const T& data);
   AVLTreeNode<T>* FindMin(AVLTreeNode<T>* node);
   AVLTreeNode<T>* RemoveMin(AVLTreeNode<T>* node);
   AVLTreeNode<T>* AVLRemove(AVLTreeNode<T>* node, const T& data);
@@ -58,6 +59,7 @@ class AVLTree {
   size_type size() const;
   size_type max_size() const;
   void insert(const T& data);
+  void insert_multi(const T& data);
   void Remove(const T& data);
   Iterator begin();
   Iterator end();

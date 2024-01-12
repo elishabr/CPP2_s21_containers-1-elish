@@ -1,5 +1,5 @@
-#ifndef SRC_ASSOCIATIVE_CONTAINERS_CONTAINERS_S21MAP_H
-#define SRC_ASSOCIATIVE_CONTAINERS_CONTAINERS_S21MAP_H
+#ifndef SRC_ASSOCIATIVE_CONTAINERS_CONTAINERS_MAP_S21MAP_H
+#define SRC_ASSOCIATIVE_CONTAINERS_CONTAINERS_MAP_S21MAP_H
 
 #include "../AVLTree.h"
 
@@ -37,13 +37,13 @@ class map : public AVLTree<pair<const Key, T>> {
   using reference = value_type&;
   using const_reference = const value_type&;
   using iterator = typename map<Key, T>::Iterator;
-  using const_iterator = const typename AVLTree<value_type>::Iterator;
+  using const_iterator = const typename map<Key, T>::Iterator;
 
  public:
   map();
   map(std::initializer_list<value_type> const& items);
-  map(const map& m);
-  map(map&& m) noexcept;
+  map(const map<key_type, mapped_type>& other);
+  map(map<key_type, mapped_type>&& other) noexcept;
   virtual ~map() override;
   map<key_type, mapped_type>& operator=(
       const map<key_type, mapped_type>& other);
@@ -56,7 +56,7 @@ class map : public AVLTree<pair<const Key, T>> {
                                              const mapped_type& obj);
   bool contains(const key_type& key) const;
   void erase(iterator pos);
-  void merge(const s21::map<Key, T>& other);
+  void merge(const map<key_type, mapped_type>& other);
 
   template <class... Args>
   std::vector<std::pair<iterator, bool>> insert_many(Args&&... args);
@@ -67,6 +67,6 @@ class map : public AVLTree<pair<const Key, T>> {
 };
 }  // namespace s21
 
-#include "S21Map.cc"
+#include "s21_map.cc"
 
-#endif  // SRC_ASSOCIATIVE_CONTAINERS_CONTAINERS_S21MAP_H
+#endif  // SRC_ASSOCIATIVE_CONTAINERS_CONTAINERS_MAP_S21MAP_H

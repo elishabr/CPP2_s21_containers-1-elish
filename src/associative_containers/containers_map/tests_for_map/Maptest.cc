@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "../S21Map.h"
+#include "../s21_map.h"
 
 TEST(Map, Insert_pair) {
   // Arrange
